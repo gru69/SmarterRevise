@@ -1,18 +1,19 @@
 {
-    "manifest_version": 3,
-    "name": "SmartRevise ChatGPT Helper",
-    "version": "1.0",
-    "description": "A Chrome extension to use ChatGPT to answer questions on SmartRevise.",
-    "permissions": ["activeTab", "scripting"],
-    "host_permissions": ["*://*.smartrevise.online/*"],
-    "content_scripts": [
-      {
-        "matches": ["*://*.smartrevise.online/*"],
-        "js": ["jquery.min.js", "content.js"]
-      }
-    ],
-    "action": {
+  "manifest_version": 3,
+  "name": "SmartER Revise Assistant",
+  "version": "1.0",
+  "description": "An extension to assist with answering questions on Smart Revise.",
+  "permissions": ["activeTab", "storage"],
+  "background": {
+      "service_worker": "background.js"
+  },
+  "action": {
       "default_popup": "popup.html"
-    }
-  }
-  
+  },
+  "content_scripts": [
+      {
+          "matches": ["*://smartrevise.online/*"],
+          "js": ["content.js"]
+      }
+  ]
+}

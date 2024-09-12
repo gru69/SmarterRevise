@@ -1,36 +1,36 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const statusElement = document.getElementById('status');
-    const answerElement = document.getElementById('answer');
-    const loadingElement = document.getElementById('loading');
-    const scrapeBtn = document.getElementById('scrapeBtn');
+document.addEventListener('DOMContentLoaded', function () {
+    const answerBox = document.getElementById('answer');
+    const copyButton = document.getElementById('copyButton');
+    const scrapeButton = document.getElementById('scrapeButton');
+    const statusBox = document.getElementById('status');
+    const errorBox = document.getElementById('error');
 
-    // Function to update status and answer
-    const updatePopup = (status, answer) => {
-        statusElement.textContent = status;
-        if (answer) {
-            answerElement.textContent = `Answer: ${answer}`;
-            loadingElement.style.display = 'none';
+    function updatePopup(data) {
+        if (data.answer) {
+            answerBox.value = data.answer;
+            statusBox.textContent = 'Answer received.';
+            errorBox.textContent = '';  // Clear any previous error messages
+        } else if (data.error) {
+            errorBox.textContent = `Error: ${data.error}`;
+            statusBox.textContent = 'Error occurred.';
         } else {
-            answerElement.textContent = '';
+            statusBox.textContent = 'Press "Scrape and Answer" to get started.';
         }
-    };
+    }
 
-    // Function to start scraping
-    const startScraping = () => {
-        loadingElement.style.display = 'block';
-        statusElement.textContent = 'Scraping...';
+    chrome.runtime.onMessage.addListener((request) => {
+        if (request.action === 'update_popup') {
+            updatePopup(request);
+        }
+    });
 
-        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-            chrome.tabs.sendMessage(tabs[0].id, { action: 'scrapeAnswer' }, (response) => {
-                if (response) {
-                    updatePopup('Data fetched successfully.', response.answer);
-                } else {
-                    updatePopup('Error retrieving data.', '');
-                }
-            });
-        });
-    };
+    scrapeButton.addEventListener('click', function () {
+        chrome.runtime.sendMessage({ action: 'scrape_and_answer' });
+    });
 
-    // Set up button click handler
-    scrapeBtn.addEventListener('click', startScraping);
+    copyButton.addEventListener('click', function () {
+        answerBox.select();
+        document.execCommand('copy');
+        statusBox.textContent = 'Answer copied to clipboard!';
+    });
 });
