@@ -7,7 +7,7 @@
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
+   git clone [(https://github.com/gru69/SmarterRevise)]
    ```
 
 2. **Load the Extension into Chrome**
@@ -16,10 +16,14 @@
    - Enable "Developer mode" by toggling the switch in the top right corner.
    - Click "Load unpacked" and select the directory where you cloned the repository.
 
+
+3. **Replace OPENAI API Key In Content.JS
+   
 ## Usage
 
 Click the extension icon and press the "Scrape Answer" button to automatically retrieve and display the suggested answer.
 
 ---
 
-Feel free to replace the placeholder URL with your actual repository link and adjust any details as needed!
+
+
