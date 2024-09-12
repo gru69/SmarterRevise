@@ -26,4 +26,6 @@ Click the extension icon and press the "Scrape Answer" button to automatically r
 ---
 
 
+![alt text](https://raw.githubusercontent.com/gru69/SmarterRevise/main/OKs5Yq7.png)
+
 
