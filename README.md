@@ -7,7 +7,7 @@
 1. **Clone the Repository**
 
    ```bash
-   git clone [(https://github.com/gru69/SmarterRevise)]
+   git clone https://github.com/gru69/SmarterRevise
    ```
 
 2. **Load the Extension into Chrome**
