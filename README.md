@@ -17,7 +17,7 @@
    - Click "Load unpacked" and select the directory where you cloned the repository.
 
 
-3. **Replace OPENAI API Key In Content.JS**
+3. **Replace GROQ API Key In Content.JS**
    
 ## Usage
 
